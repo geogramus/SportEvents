@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Spinner
+            android:layout_marginTop="@dimen/spinnerLayoutMargintop"
+            android:padding="@dimen/spinnerPadding"
+            android:id="@+id/spinnersport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/sporttype"
+            />
+
+        <Spinner
+            android:id="@+id/spinnermetro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spinnerLayoutMargintop"
+            android:entries="@array/metro"
+            android:padding="@dimen/spinnerPadding" />
+
+        <Spinner
+            android:layout_marginTop="@dimen/spinnerLayoutMargintop"
+            android:padding="@dimen/spinnerPadding"
+            android:id="@+id/spinerAmountOfPeople"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/size"
+            />
+        <TextView
+            android:layout_marginTop="@dimen/spinnerLayoutMargintop"
+            android:padding="@dimen/spinnerPadding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:textColor="@color/vk_color"
+            android:text="@string/description_of_the_event"/>
+        <EditText
+            android:id="@+id/eventDescription"
+            android:layout_marginTop="@dimen/spinnerLayoutMargintop"
+            android:padding="@dimen/spinnerPadding"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_event_place_on_the_map"
+            android:textColor="@color/vk_white"
+            android:background="@color/vk_color"
+            android:layout_gravity="right"
+            android:padding="@dimen/addEventStandartLayoutMargin"
+            android:layout_margin="@dimen/addEventStandartLayoutMargin"
+            android:id="@+id/mapButton"/>
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.google.android.gms.maps.MapFragment"
+            android:id="@+id/mapView"
+            />
+
+    </LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/addNewEventButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        app:useCompatPadding="true"
+        android:src="@drawable/ic_loupe_black_24dp"/>
+
+</FrameLayout>

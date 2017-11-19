@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">SportEvents</string>
+    <string name="description_of_the_event">Description of the event</string>
+    <string name="add_event_place_on_the_map">Add Event Place On The Map</string>
+    <integer name="com_vk_sdk_AppId">6260009</integer>
+    <string-array name="sporttype">
+        <item>Footbal</item>
+        <item>Hockey</item>
+        <item>Volldeyball</item>
+        <item>Sailing</item>
+    </string-array>
+    <string-array name="metro">
+        <item>Sokol</item>
+        <item>Voykovskaya</item>
+        <item>Shukinskaya</item>
+        <item>Timiryazevskaya</item>
+    </string-array>
+    <string-array name="size">
+        <item>3-3</item>
+        <item>5-5</item>
+        <item>8-8</item>
+    </string-array>
+</resources>

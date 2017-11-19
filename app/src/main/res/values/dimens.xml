@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="iconSize">40dp</dimen>
+    <dimen name="spinnerItemTextSize">25dp</dimen>
+    <dimen name="spinnerPadding">10dp</dimen>
+    <dimen name="spinnerLayoutMargintop">10dp</dimen>
+    <dimen name="listPadding">10dp</dimen>
+    <dimen name="listMargin">10dp</dimen>
+    <dimen name="addEventStandartLayoutMargin">10dp</dimen>
+</resources>

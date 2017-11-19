@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_margin="@dimen/listMargin"
+            android:id="@+id/itemcontainer"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="@dimen/listPadding"
+            android:orientation="horizontal"
+            android:background="@drawable/vk_gray_transparent_shape">
+            <TextView
+
+                android:id="@+id/eventType"
+                android:textColor="@color/vk_color"
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                         />
+            <TextView
+                android:textColor="@color/vk_color"
+                android:textSize="20dp"
+                android:id="@+id/eventMetro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"/>
+
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</FrameLayout>
