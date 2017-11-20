@@ -7,4 +7,10 @@
     <dimen name="listPadding">10dp</dimen>
     <dimen name="listMargin">10dp</dimen>
     <dimen name="addEventStandartLayoutMargin">10dp</dimen>
+    <dimen name="standartEventActivityTextSize">20sp</dimen>
+    <dimen name="eventPadding">10dp</dimen>
+    <dimen name="descriptionTextSize">15sp</dimen>
+    <dimen name="textSizeCityFragment">40sp</dimen>
+    <dimen name="descriptionsize_addnewevent">25sp</dimen>
+    <dimen name="textitemsize">20sp</dimen>
 </resources>

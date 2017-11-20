@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -8,7 +9,12 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/vk_color"
+            android:text="@string/select_type_of_event"/>
         <Spinner
             android:layout_marginTop="@dimen/spinnerLayoutMargintop"
             android:padding="@dimen/spinnerPadding"
@@ -17,7 +23,11 @@
             android:layout_height="wrap_content"
             android:entries="@array/sporttype"
             />
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/vk_color"
+            android:text="@string/select_the_nearest_metro_station"/>
         <Spinner
             android:id="@+id/spinnermetro"
             android:layout_width="match_parent"
@@ -25,7 +35,11 @@
             android:layout_marginTop="@dimen/spinnerLayoutMargintop"
             android:entries="@array/metro"
             android:padding="@dimen/spinnerPadding" />
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/vk_color"
+            android:text="@string/select_the_number_of_participants"/>
         <Spinner
             android:layout_marginTop="@dimen/spinnerLayoutMargintop"
             android:padding="@dimen/spinnerPadding"
@@ -39,39 +53,53 @@
             android:padding="@dimen/spinnerPadding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25dp"
+            android:textSize="@dimen/descriptionsize_addnewevent"
             android:textColor="@color/vk_color"
             android:text="@string/description_of_the_event"/>
         <EditText
             android:id="@+id/eventDescription"
+            android:inputType="text"
             android:layout_marginTop="@dimen/spinnerLayoutMargintop"
             android:padding="@dimen/spinnerPadding"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        <Button
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_marginTop="@dimen/spinnerLayoutMargintop"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/add_event_place_on_the_map"
-            android:textColor="@color/vk_white"
-            android:background="@color/vk_color"
-            android:layout_gravity="right"
-            android:padding="@dimen/addEventStandartLayoutMargin"
-            android:layout_margin="@dimen/addEventStandartLayoutMargin"
-            android:id="@+id/mapButton"/>
+            android:orientation="vertical">
+             <TextView
+                 android:padding="@dimen/eventPadding"
+                 android:id="@+id/addneweventAdress"
+                 android:layout_width="match_parent"
+                 android:layout_height="40dp"
+                 android:text="@string/select_address"
+                 android:textColor="@color/vk_color"
+                 android:layout_gravity="center"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/add_event_place_on_the_map"
+                android:textColor="@color/vk_white"
+                android:background="@color/vk_color"
+                android:padding="@dimen/addEventStandartLayoutMargin"
+                android:layout_margin="@dimen/addEventStandartLayoutMargin"
+                android:id="@+id/mapButton"/>
+        </LinearLayout>
         <fragment
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="200dp"
             android:name="com.google.android.gms.maps.MapFragment"
             android:id="@+id/mapView"
             />
-
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/addNewEventButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            app:useCompatPadding="true"
+            android:src="@drawable/ic_loupe_black_24dp"/>
     </LinearLayout>
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/addNewEventButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        app:useCompatPadding="true"
-        android:src="@drawable/ic_loupe_black_24dp"/>
 
-</FrameLayout>
+
+</ScrollView>

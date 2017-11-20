@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.geogr.sportevents.EventViewActivity">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/eventPadding">
+        <!--    <TextView
+                android:layout_weight="0.4"
+                android:textSize="@dimen/standartEventActivityTextSize"
+                android:id="@+id/activity_eventid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="id"/>-->
+            <TextView
+                android:layout_weight="0.3"
+                android:textSize="@dimen/standartEventActivityTextSize"
+                android:textColor="@color/vk_color"
+                android:id="@+id/activity_eventtype"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/defaultType"/>
+            <TextView
+                android:textSize="@dimen/standartEventActivityTextSize"
+                android:textColor="@color/vk_color"
+                android:id="@+id/activity_eventmetro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/defaultMetro"/>
+            <ImageView
+                android:layout_width="@dimen/iconSize"
+                android:layout_height="@dimen/iconSize"
+                android:src="@drawable/original"/>
+        </LinearLayout>
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:name="com.google.android.gms.maps.MapFragment"
+            android:id="@+id/activity_eventmapView"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/vk_color"
+            android:textSize="@dimen/standartEventActivityTextSize"
+            android:id="@+id/activity_eventadress"
+            android:padding="@dimen/eventPadding"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/vk_color"
+            android:textSize="@dimen/standartEventActivityTextSize"
+            android:id="@+id/activity_eventpeopleamount"
+            android:padding="@dimen/eventPadding"/>
+
+        <TextView
+            android:id="@+id/activity_eventpeopledescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/eventPadding"
+            android:textSize="@dimen/descriptionTextSize"
+            android:textColor="@color/vk_color"/>
+
+
+
+    </LinearLayout>
+
+</ScrollView>

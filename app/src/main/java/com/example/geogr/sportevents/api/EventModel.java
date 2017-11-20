@@ -1,6 +1,5 @@
 package com.example.geogr.sportevents.api;
 
-import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -27,17 +26,25 @@ public class EventModel implements Serializable {
     @SerializedName("eventdescription")
     @Expose
     private String eventDescription;
-    @SerializedName("position")
+    @SerializedName("latitude")
     @Expose
-    private String position;
+    private double latitude;
+    @SerializedName("longtitude")
+    @Expose
+    private double longitude;
+    @SerializedName("adress")
+    @Expose
+    private String adress;
 
-    public EventModel(int id, String eventype, String metro, String peoplesize, String eventDescription, String position){
+    public EventModel(int id, String eventype, String metro, String peoplesize, String eventDescription,String adress, double latitude, double longitude){
         this.id=id;
         this.eventype=eventype;
         this.metro=metro;
         this.peoplesize=peoplesize;
         this.eventDescription=eventDescription;
-        this.position=position;
+        this.adress=adress;
+        this.latitude=latitude;
+        this.longitude=longitude;
     }
     public Integer getId() {
         return id;
@@ -74,10 +81,22 @@ public class EventModel implements Serializable {
     public String getEventDescription() {
         return eventDescription;
     }
-    public void setPosition(String position) {
-        this.position = position;
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
-    public String getPosition() {
-        return position;
+    public String getAdress() {
+        return adress;
+    }
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+    public Double getLatitude() {
+        return latitude;
+    }
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+    public Double getLongitude() {
+        return longitude;
     }
 }

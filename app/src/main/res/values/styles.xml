@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/vk_color</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/vk_color</item>
+        <item name="colorAccent">@color/buttonColor</item>
     </style>
     <style name="appTheme" parent="Theme.AppCompat.Light.DarkActionBar">
             <item name="android:windowNoTitle">true</item>
