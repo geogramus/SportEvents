@@ -32,4 +32,5 @@ public class Application extends android.app.Application {
         vkAccessToken.startTracking();
         VKSdk.initialize(this);
     }
+
 }

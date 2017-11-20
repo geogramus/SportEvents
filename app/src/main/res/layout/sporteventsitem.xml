@@ -12,19 +12,21 @@
             android:layout_height="50dp"
             android:padding="@dimen/listPadding"
             android:orientation="horizontal"
-            android:background="@drawable/vk_gray_transparent_shape">
+            android:background="@drawable/rounded"
+
+            >
             <TextView
 
                 android:id="@+id/eventType"
-                android:textColor="@color/vk_color"
-                android:textSize="20dp"
+                android:textColor="@color/vk_white"
+                android:textSize="@dimen/textitemsize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                          />
             <TextView
-                android:textColor="@color/vk_color"
-                android:textSize="20dp"
+                android:textColor="@color/vk_white"
+                android:textSize="@dimen/textitemsize"
                 android:id="@+id/eventMetro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

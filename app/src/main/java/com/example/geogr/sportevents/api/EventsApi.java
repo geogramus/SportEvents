@@ -25,5 +25,7 @@ public interface EventsApi {
                             @Query("metro") String metro,
                             @Query("peoplesize") String peoplesize,
                             @Query("eventdescription")String eventdescription,
-                            @Query("position") String position);
+                            @Query("adress")String adress,
+                            @Query("latitude") Double latitude,
+                            @Query("longtitude") Double longtitude);
 }

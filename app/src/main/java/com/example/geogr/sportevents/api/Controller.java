@@ -16,8 +16,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by geogr on 16.11.2017.
  */
 
-public class Controller extends Application{
-    static final String BAASE_URL=" http://sportevents.getsandbox.com/";
+public class Controller{
+     static String BAASE_URL;
+
+    public static String getBaaseUrl() {
+        return BAASE_URL;
+    }
+
+    public static void setBaaseUrl(String baaseUrl) {
+        BAASE_URL = baaseUrl;
+    }
+
     public static EventsApi getApi(){
         Gson gson=new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
