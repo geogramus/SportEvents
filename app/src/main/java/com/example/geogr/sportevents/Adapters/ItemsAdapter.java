@@ -36,9 +36,11 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHold
             if(eventModel==null){
                 holder.eventType.setText("0");
                 holder.metro.setText("0");
+                holder.numberofpeople.setText("0");
             }else {
                 holder.eventType.setText(eventModel.getEventype());
-                holder.metro.setText(eventModel.getMetro());
+                holder.metro.setText(eventModel.getAdress());
+                holder.numberofpeople.setText("Number of people:"+eventModel.getPeoplesize());
             }
 
     }
@@ -63,13 +65,14 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHold
     public class ItemViewHolder extends RecyclerView.ViewHolder {
         private final TextView eventType;
         private final TextView metro;
+        private final TextView numberofpeople;
         private final View container;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
             eventType= (TextView) itemView.findViewById(R.id.eventType);
             metro= (TextView) itemView.findViewById(R.id.eventMetro);
-
+            numberofpeople=(TextView) itemView.findViewById(R.id.list_item_number);
             container=itemView.findViewById(R.id.itemcontainer);
         }
     }

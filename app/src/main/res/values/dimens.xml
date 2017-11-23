@@ -13,4 +13,7 @@
     <dimen name="textSizeCityFragment">40sp</dimen>
     <dimen name="descriptionsize_addnewevent">25sp</dimen>
     <dimen name="textitemsize">20sp</dimen>
+    <dimen name="dateSize">10dp</dimen>
+    <dimen name="adrssSize">15sp</dimen>
+    <dimen name="descriptionpadding">20dp</dimen>
 </resources>

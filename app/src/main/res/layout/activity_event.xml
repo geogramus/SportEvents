@@ -14,33 +14,15 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="@dimen/eventPadding">
-        <!--    <TextView
-                android:layout_weight="0.4"
-                android:textSize="@dimen/standartEventActivityTextSize"
-                android:id="@+id/activity_eventid"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="id"/>-->
+
             <TextView
                 android:layout_weight="0.3"
                 android:textSize="@dimen/standartEventActivityTextSize"
-                android:textColor="@color/vk_color"
                 android:id="@+id/activity_eventtype"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/defaultType"/>
-            <TextView
-                android:textSize="@dimen/standartEventActivityTextSize"
-                android:textColor="@color/vk_color"
-                android:id="@+id/activity_eventmetro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:text="@string/defaultMetro"/>
-            <ImageView
-                android:layout_width="@dimen/iconSize"
-                android:layout_height="@dimen/iconSize"
-                android:src="@drawable/original"/>
+
         </LinearLayout>
         <fragment
             android:layout_width="match_parent"
@@ -50,14 +32,37 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/vk_color"
             android:textSize="@dimen/standartEventActivityTextSize"
             android:id="@+id/activity_eventadress"
             android:padding="@dimen/eventPadding"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/eventCreator"
+                android:padding="@dimen/eventPadding"
+                android:textSize="@dimen/standartEventActivityTextSize"/>
+
+            <ImageView
+                android:id="@+id/vkbutton"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:src="@drawable/vkicon" />
+        </LinearLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/vk_color"
+            android:padding="@dimen/eventPadding"
+            android:id="@+id/activity_eventphoneNumber"
+            android:textSize="@dimen/descriptionTextSize" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:textSize="@dimen/standartEventActivityTextSize"
             android:id="@+id/activity_eventpeopleamount"
             android:padding="@dimen/eventPadding"/>
@@ -68,8 +73,7 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/eventPadding"
             android:textSize="@dimen/descriptionTextSize"
-            android:textColor="@color/vk_color"/>
-
+           />
 
 
     </LinearLayout>

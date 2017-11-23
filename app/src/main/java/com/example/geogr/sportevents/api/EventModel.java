@@ -17,32 +17,44 @@ public class EventModel implements Serializable {
     @SerializedName("eventype")
     @Expose
     private String eventype;
-    @SerializedName("metro")
+ /*   @SerializedName("metro")
     @Expose
-    private String metro;
+    private String metro;*/
     @SerializedName("peoplesize")
     @Expose
     private String peoplesize;
     @SerializedName("eventdescription")
     @Expose
     private String eventDescription;
+    @SerializedName("adress")
+    @Expose
+    private String adress;
     @SerializedName("latitude")
     @Expose
     private double latitude;
     @SerializedName("longtitude")
     @Expose
     private double longitude;
-    @SerializedName("adress")
+    @SerializedName("vkid")
     @Expose
-    private String adress;
+    private String vkid;
+    @SerializedName("firstlastname")
+    @Expose
+    private String firstlastname;
+    @SerializedName("phonenumber")
+    @Expose
+    private String phonenumber;
 
-    public EventModel(int id, String eventype, String metro, String peoplesize, String eventDescription,String adress, double latitude, double longitude){
+    public EventModel(int id, String eventype, /*String metro,*/ String peoplesize, String eventDescription,String adress,String vkid, String firstlastname, String phonenumber, double latitude, double longitude){
         this.id=id;
         this.eventype=eventype;
-        this.metro=metro;
+      /*  this.metro=metro;*/
         this.peoplesize=peoplesize;
         this.eventDescription=eventDescription;
         this.adress=adress;
+        this.vkid=vkid;
+        this.firstlastname=firstlastname;
+        this.phonenumber=phonenumber;
         this.latitude=latitude;
         this.longitude=longitude;
     }
@@ -60,13 +72,6 @@ public class EventModel implements Serializable {
         this.eventype = eventype;
     }
 
-    public String getMetro() {
-        return metro;
-    }
-
-    public void setMetro(String metro) {
-        this.metro = metro;
-    }
 
     public void setPeoplesize(String peoplesize) {
         this.peoplesize = peoplesize;
@@ -78,6 +83,7 @@ public class EventModel implements Serializable {
     public void setEventDescription(String eventDescription) {
         this.eventDescription = eventDescription;
     }
+
     public String getEventDescription() {
         return eventDescription;
     }
@@ -86,6 +92,24 @@ public class EventModel implements Serializable {
     }
     public String getAdress() {
         return adress;
+    }
+    public void setVkid(String vkid) {
+        this.vkid = vkid;
+    }
+    public String getVkid() {
+        return vkid;
+    }
+    public void setFirstlastname(String firstlastname) {
+        this.firstlastname= firstlastname;
+    }
+    public String getFirstlastname() {
+        return firstlastname;
+    }
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber= phonenumber;
+    }
+    public String getPhonenumber() {
+        return phonenumber;
     }
     public void setLatitude(Double latitude) {
         this.latitude = latitude;

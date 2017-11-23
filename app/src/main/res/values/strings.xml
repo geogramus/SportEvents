@@ -11,6 +11,10 @@
     <string name="select_the_nearest_metro_station">Select the nearest metro station:</string>
     <string name="select_the_number_of_participants">Select the number of participants:</string>
     <string name="select_address">Select Address</string>
+    <string name="description">Description</string>
+    <string name="datehint">Date</string>
+    <string name="timeHint">Time</string>
+    <string name="your_phone_number">Your Phone Number</string>
     <integer name="com_vk_sdk_AppId">6260009</integer>
     <string-array name="city">
         <item>Moscow</item>
@@ -18,7 +22,7 @@
         <item>Other city</item>
     </string-array>
     <string-array name="sporttype">
-        <item>...</item>
+        <item>Select type of the event</item>
         <item>Footbal</item>
         <item>Hockey</item>
         <item>Volleyball</item>
@@ -119,7 +123,7 @@
         <item>Timiryazevskaya</item>
     </array>
     <string-array name="size">
-        <item>...</item>
+        <item>Select number of people</item>
         <item>2</item>
         <item>3</item>
         <item>4</item>

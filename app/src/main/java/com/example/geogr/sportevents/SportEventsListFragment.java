@@ -91,10 +91,16 @@ public class SportEventsListFragment extends Fragment {
             public void onItemClick(RecyclerView recyclerView, View itemView, int position) {
                 Intent intent=new Intent(getContext(), EventViewActivity.class);
                 EventModel event = eventitems.get(position);
-                intent.putExtra("event", new EventModel(event.getId(), event.getEventype(),
-                        event.getMetro(),event.getPeoplesize(),
-                        event.getEventDescription(), event.getAdress(),
-                        event.getLatitude(), event.getLongitude()));
+                intent.putExtra("event", new EventModel(event.getId(),
+                        event.getEventype(),
+                        event.getPeoplesize(),
+                        event.getEventDescription(),
+                        event.getAdress(),
+                        event.getVkid(),
+                        event.getFirstlastname(),
+                        event.getPhonenumber(),
+                        event.getLatitude(),
+                        event.getLongitude()));
                 startActivity(intent);
             }
 
@@ -165,10 +171,13 @@ public class SportEventsListFragment extends Fragment {
                         try{
                             status= eventsApi.add(eventModel.getId(),
                                     eventModel.getEventype(),
-                                    eventModel.getMetro(),
+                                 /*   eventModel.getMetro(),*/
                                     eventModel.getPeoplesize(),
                                     eventModel.getEventDescription(),
                                     eventModel.getAdress(),
+                                    eventModel.getVkid(),
+                                    eventModel.getFirstlastname(),
+                                    eventModel.getPhonenumber(),
                                     eventModel.getLatitude(),
                                     eventModel.getLongitude()).execute().body();
                             return status;

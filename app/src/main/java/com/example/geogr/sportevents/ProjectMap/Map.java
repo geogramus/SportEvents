@@ -60,7 +60,7 @@ public class Map{
                     .draggable(true)
                     .position(new LatLng(lat, lng))
                     .title("Marker")
-                    .draggable(true)
+                    .draggable(false)
             );
 
             googleMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
