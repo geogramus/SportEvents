@@ -22,8 +22,13 @@ public interface EventsApi {
         @POST("events")
         Call<AddResult> add(@Query("id") int id,
                            @Query("eventype")String type,
-                            @Query("metro") String metro,
+                        /*    @Query("metro") String metro,*/
                             @Query("peoplesize") String peoplesize,
                             @Query("eventdescription")String eventdescription,
-                            @Query("position") String position);
+                            @Query("adress")String adress,
+                            @Query("vkid")String vkid,
+                            @Query("firstlastname")String firtstname,
+                            @Query("phonenumber")String phonenumber,
+                            @Query("latitude") Double latitude,
+                            @Query("longtitude") Double longtitude);
 }

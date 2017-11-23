@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.geogr.sportevents.Adapters.ItemsAdapter;
+import com.example.geogr.sportevents.RecyclerView.RecyclerClickListener;
 import com.example.geogr.sportevents.api.AddResult;
 import com.example.geogr.sportevents.api.Controller;
 import com.example.geogr.sportevents.api.EventModel;
@@ -56,7 +57,7 @@ public class SportEventsListFragment extends Fragment {
         final RecyclerView items=(RecyclerView) view.findViewById(R.id.items);
         controller=new Controller();
         eventsApi= controller.getApi();
-
+        MainActivity.logoutMI.setVisible(true);
         adapter=new ItemsAdapter(eventitems);
         items.setAdapter(adapter);
 
@@ -74,14 +75,38 @@ public class SportEventsListFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getContext(),AddNewEvent.class);
-                if(eventitems.get(0).getId()==null){
+                if(adapter.getItemCount()==0){
                     Toast.makeText(getContext(), "Loading id Error", Toast.LENGTH_SHORT).show();
+                    intent.putExtra("id", 0);
                 }else{
                      int id=eventitems.get(0).getId()+1;
                      intent.putExtra("id", id);
                 }
 
                 startActivityForResult(intent, RC_ADD_ITEM);
+            }
+        });
+        items.addOnItemTouchListener(new RecyclerClickListener(getContext()) {
+            @Override
+            public void onItemClick(RecyclerView recyclerView, View itemView, int position) {
+                Intent intent=new Intent(getContext(), EventViewActivity.class);
+                EventModel event = eventitems.get(position);
+                intent.putExtra("event", new EventModel(event.getId(),
+                        event.getEventype(),
+                        event.getPeoplesize(),
+                        event.getEventDescription(),
+                        event.getAdress(),
+                        event.getVkid(),
+                        event.getFirstlastname(),
+                        event.getPhonenumber(),
+                        event.getLatitude(),
+                        event.getLongitude()));
+                startActivity(intent);
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
             }
         });
 
@@ -132,32 +157,11 @@ public class SportEventsListFragment extends Fragment {
         if(requestCode==RC_ADD_ITEM && resultCode==RESULT_OK){
             EventModel eventModel=(EventModel) data.getSerializableExtra("item");
             addItem(eventModel);
-            loadItems();
-         //   statusstring=status.getStatus();
-
         }
     }
 
-    AddResult addresult=new AddResult();
     private void addItem(final EventModel eventModel) {
-/*
-            Call<AddResult> call=eventsApi.add(eventModel.getId(), eventModel.getEventype(), eventModel.getMetro());
-            call.enqueue(new Callback<AddResult>() {
-                @Override
-                public void onResponse(Call<AddResult> call, Response<AddResult> response) {
-                    if (response.isSuccessful()) {
-                       addresult.setStatus(response.body());
-                        Toast.makeText(getContext(), "zbs", Toast.LENGTH_LONG).show();// запрос выполнился успешно, сервер вернул Status 200
-                    } else {
-                        // сервер вернул ошибку
-                    }
-                }
 
-                @Override
-                public void onFailure(Call<AddResult> call, Throwable t) {
-
-                }
-            });*/
         getLoaderManager().restartLoader(LOADER_ADD, null, new LoaderManager.LoaderCallbacks<AddResult>() {
             @Override
             public Loader<AddResult> onCreateLoader(int id, Bundle args) {
@@ -167,10 +171,15 @@ public class SportEventsListFragment extends Fragment {
                         try{
                             status= eventsApi.add(eventModel.getId(),
                                     eventModel.getEventype(),
-                                    eventModel.getMetro(),
+                                 /*   eventModel.getMetro(),*/
                                     eventModel.getPeoplesize(),
                                     eventModel.getEventDescription(),
-                                    eventModel.getPosition()).execute().body();
+                                    eventModel.getAdress(),
+                                    eventModel.getVkid(),
+                                    eventModel.getFirstlastname(),
+                                    eventModel.getPhonenumber(),
+                                    eventModel.getLatitude(),
+                                    eventModel.getLongitude()).execute().body();
                             return status;
                         }
                         catch (Exception e){
@@ -183,11 +192,10 @@ public class SportEventsListFragment extends Fragment {
 
             @Override
             public void onLoadFinished(Loader<AddResult> loader, AddResult data) {
-               // adapter.updateId(eventModel, data.id);
-
-//               statusstring=data.getStatus();
-//                Toast toast = Toast.makeText(getContext(), statusstring, Toast.LENGTH_LONG);
-//                toast.show();
+                loadItems();
+                adapter.notifyDataSetChanged();
+                Toast toast = Toast.makeText(getContext(), "Event Add", Toast.LENGTH_LONG);
+                toast.show();
 
             }
 
