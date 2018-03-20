@@ -1,0 +1,36 @@
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
+        android:id="@+id/viewShadow"
+        android:weightSum="1">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="войти через vk"
+            android:layout_margin="30dp"
+            android:textSize="30dp"
+            android:background="@color/vk_color"
+            android:id="@+id/enter"
+            android:textColor="@color/vk_white"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SportEvents"
+            android:textColor="@color/vk_color"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="40dp"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            android:layout_weight="0.26" />
+
+</LinearLayout>

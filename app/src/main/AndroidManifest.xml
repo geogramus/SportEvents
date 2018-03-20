@@ -4,20 +4,21 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
+        android:name=".Application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".Application">
-        <activity android:name=".MainActivity">
+        android:theme="@style/appTheme.my">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,9 +28,12 @@
         <activity
             android:name="com.vk.sdk.VKServiceActivity"
             android:label="ServiceActivity"
-            android:theme="@style/VK.Transparent" />
-        <activity android:name=".SecondActivity"></activity>
-        <activity android:name=".AddNewEvent"/>
+            android:theme="@style/VK.Transparent"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AddNewEvent"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"/>
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -37,7 +41,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyA42dvOYtIv1x7T4gJyOy7dW8y2K33l_yI" />
 
-
+        <activity android:name=".EventViewActivity"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

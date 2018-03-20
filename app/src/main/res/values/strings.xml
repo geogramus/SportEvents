@@ -2,22 +2,151 @@
     <string name="app_name">SportEvents</string>
     <string name="description_of_the_event">Description of the event</string>
     <string name="add_event_place_on_the_map">Add Event Place On The Map</string>
+    <string name="errorfieldstoast">Fill in all the fields and select a place on the map.</string>
+    <string name="menuexit">Exit</string>
+    <string name="menucityes">Cityes</string>
+    <string name="defaultType">Type</string>
+    <string name="defaultMetro">Metro</string>
+    <string name="select_type_of_event">Select type of event:</string>
+    <string name="select_the_nearest_metro_station">Select the nearest metro station:</string>
+    <string name="select_the_number_of_participants">Select the number of participants:</string>
+    <string name="select_address">Select Address</string>
+    <string name="description">Description</string>
+    <string name="datehint">Date</string>
+    <string name="timeHint">Time</string>
+    <string name="your_phone_number">Your Phone Number</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
     <integer name="com_vk_sdk_AppId">6260009</integer>
+    <string-array name="city">
+        <item>Moscow</item>
+        <item>Saint-Petersburg</item>
+        <item>Other city</item>
+    </string-array>
     <string-array name="sporttype">
+        <item>Select type of the event</item>
         <item>Footbal</item>
         <item>Hockey</item>
-        <item>Volldeyball</item>
+        <item>Volleyball</item>
+        <item>Archery</item>
+        <item>Athletics</item>
+        <item>Billiards</item>
+        <item>Bobsleigh</item>
+        <item>Bowling</item>
+        <item>Boxing</item>
+        <item>Canoe</item>
+        <item>Canoe Slalom</item>
+        <item>Chess</item>
+        <item>Climbing</item>
+        <item>Cross Country Skiing (XC Skiing)</item>
+        <item>Cycling</item>
+        <item>Dancing</item>
+        <item>Darts</item>
+        <item>Discus</item>
+        <item>Downhill Skiing</item>
+        <item>Endourance course</item>
+        <item>Fencing</item>
+        <item>Figure</item>
+        <item>Skating</item>
+        <item>Fishing</item>
+        <item>Giant</item>
+        <item>Slalom</item>
+        <item>Gliding</item>
+        <item>Gymnastics</item>
+        <item>Hammer Throwing</item>
+        <item>Hang-gliding</item>
+        <item>High</item>
+        <item>Diving</item>
+        <item>High jump</item>
+        <item>Hiking</item>
+        <item>Horse</item>
+        <item>Racing</item>
+        <item>Hunting</item>
+        <item>Hurdle Race</item>
+        <item>Ice Hockey</item>
+        <item>Javelin</item>
+        <item>Jogging</item>
+        <item>Kayak</item>
+        <item>long distance run</item>
+        <item>Long jump</item>
+        <item>Luge</item>
+        <item>Modern</item>
+        <item>Pentathlon</item>
+        <item>Motorsports</item>
+        <item>Mountaineering</item>
+        <item>Netball</item>
+        <item>Nordic Combined</item>
+        <item>Orienteering</item>
+        <item>Paintball</item>
+        <item>Parachuting</item>
+        <item>Pole Vault</item>
+        <item>Relay</item>
+        <item>Race</item>
+        <item>Rhythmic</item>
+        <item>Gymnastics</item>
+        <item>Riding, Equestrian</item>
+        <item>Rope</item>
+        <item>Skipping</item>
+        <item>Rowing</item>
+        <item>Running</item>
         <item>Sailing</item>
+        <item>Shooting</item>
+        <item>Shot put</item>
+        <item>Skateboarding</item>
+        <item>Skating</item>
+        <item>Ski</item>
+        <item>Jumping</item>
+        <item>Skiing</item>
+        <item>Snowboarding</item>
+        <item>Soccer, Football</item>
+        <item>Speed</item>
+        <item>Skating</item>
+        <item>Sprint</item>
+        <item>Surfing</item>
+        <item>Swimming, Aquatics</item>
+        <item>Synchronized Swimming</item>
+        <item>Table</item>
+        <item>Tennis</item>
+        <item>Track and Field</item>
+        <item>tug-of-war</item>
+        <item>Walking</item>
+        <item>Water Polo</item>
+        <item>Waterski</item>
+        <item>Weight</item>
+        <item>Lifting</item>
+        <item>Windsurfing</item>
+        <item>Wrestling</item>
+        <item>Other...</item>
     </string-array>
-    <string-array name="metro">
+    <array name="metro">
         <item>Sokol</item>
         <item>Voykovskaya</item>
         <item>Shukinskaya</item>
         <item>Timiryazevskaya</item>
-    </string-array>
+    </array>
     <string-array name="size">
-        <item>3-3</item>
-        <item>5-5</item>
-        <item>8-8</item>
+        <item>Select number of people</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>More...</item>
     </string-array>
 </resources>
