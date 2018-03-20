@@ -23,12 +23,52 @@
                 android:layout_height="wrap_content"
                 android:text="@string/defaultType"/>
 
+            <TextView
+                android:layout_weight="0.3"
+                android:textSize="@dimen/adrssSize"
+                android:id="@+id/activity_eventdatetime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/defaultType"/>
+
         </LinearLayout>
         <fragment
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:name="com.google.android.gms.maps.MapFragment"
             android:id="@+id/activity_eventmapView"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/listMargin">
+                <TextView
+                    android:background="@drawable/rounded"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/plusminustextsize"
+                    android:gravity="center"
+                    android:id="@+id/plus"
+                    android:layout_gravity="right"
+                    android:text="@string/plus"
+                    android:layout_marginRight="30dp"
+                    android:textColor="@color/vk_white"
+                    android:padding="@dimen/eventPadding"
+                   />
+            <TextView
+                        android:layout_width="70dp"
+                        android:id="@+id/minus"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/plusminustextsize"
+                        android:gravity="center"
+                        android:layout_gravity="right"
+                        android:text="@string/minus"
+                        android:background="@drawable/rounded"
+                        android:textColor="@color/vk_white"
+                        android:padding="@dimen/eventPadding"
+                       />
+        </LinearLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -75,7 +115,11 @@
             android:textSize="@dimen/descriptionTextSize"
            />
 
-
+           <!-- <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/russia"
+                android:id="@+id/rss"/>-->
     </LinearLayout>
 
 </ScrollView>

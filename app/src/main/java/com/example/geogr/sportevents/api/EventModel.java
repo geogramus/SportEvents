@@ -44,8 +44,11 @@ public class EventModel implements Serializable {
     @SerializedName("phonenumber")
     @Expose
     private String phonenumber;
+    @SerializedName("datetime")
+    @Expose
+    private String datetime;
 
-    public EventModel(int id, String eventype, /*String metro,*/ String peoplesize, String eventDescription,String adress,String vkid, String firstlastname, String phonenumber, double latitude, double longitude){
+    public EventModel(int id, String eventype, /*String metro,*/ String peoplesize, String eventDescription,String adress,String vkid, String firstlastname, String phonenumber, String datetime, double latitude, double longitude){
         this.id=id;
         this.eventype=eventype;
       /*  this.metro=metro;*/
@@ -55,6 +58,7 @@ public class EventModel implements Serializable {
         this.vkid=vkid;
         this.firstlastname=firstlastname;
         this.phonenumber=phonenumber;
+        this.datetime=datetime;
         this.latitude=latitude;
         this.longitude=longitude;
     }
@@ -110,6 +114,12 @@ public class EventModel implements Serializable {
     }
     public String getPhonenumber() {
         return phonenumber;
+    }
+    public void setDatetime(String datetime) {
+        this.datetime= datetime;
+    }
+    public String getDatetime() {
+        return datetime;
     }
     public void setLatitude(Double latitude) {
         this.latitude = latitude;

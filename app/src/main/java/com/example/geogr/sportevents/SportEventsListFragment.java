@@ -10,6 +10,7 @@ import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,9 +23,22 @@ import com.example.geogr.sportevents.api.Controller;
 import com.example.geogr.sportevents.api.EventModel;
 import com.example.geogr.sportevents.api.EventsApi;
 
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -46,15 +60,19 @@ public class SportEventsListFragment extends Fragment {
     }
     final List<EventModel> eventitems = new ArrayList<>();
     private static EventsApi eventsApi;
+    @BindView(R.id.refresh)
     SwipeRefreshLayout refresh;
     Controller controller;
+    @BindView(R.id.add)
     FloatingActionButton fab;
     AddResult status;
-    String statusstring;
+    @BindView(R.id.items)
+    RecyclerView items;
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        final RecyclerView items=(RecyclerView) view.findViewById(R.id.items);
+
+        ButterKnife.bind(this, view);
         controller=new Controller();
         eventsApi= controller.getApi();
         MainActivity.logoutMI.setVisible(true);
@@ -63,14 +81,12 @@ public class SportEventsListFragment extends Fragment {
 
         loadItems();
 
-        refresh=(SwipeRefreshLayout) view.findViewById(R.id.refresh);
         refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 loadItems();
             }
         });
-        fab=(FloatingActionButton) view.findViewById(R.id.add);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,6 +115,7 @@ public class SportEventsListFragment extends Fragment {
                         event.getVkid(),
                         event.getFirstlastname(),
                         event.getPhonenumber(),
+                        event.getDatetime(),
                         event.getLatitude(),
                         event.getLongitude()));
                 startActivity(intent);
@@ -111,46 +128,55 @@ public class SportEventsListFragment extends Fragment {
         });
 
     }
+    CompositeDisposable mCompositeDisposable;
     private void loadItems(){
-        getLoaderManager().initLoader(LOADER_ITEMS, null, new LoaderManager.LoaderCallbacks<List<EventModel>>() {
-            @Override
-            public Loader<List<EventModel>> onCreateLoader(int id, Bundle args) {
-               return new AsyncTaskLoader<List<EventModel>>(getContext()) {
-                   @Override
-                   public List<EventModel> loadInBackground() {
-                        try{
-                           Call<List<EventModel>> modelItems=eventsApi.getData();
-                            Response<List<EventModel>> execute=modelItems.execute();
-                            List<EventModel> body=execute.body();
-                            return body;
-                        }
-                        catch (Exception e){
-                            e.printStackTrace();
-                            return null;
-                        }
-                   }
-               };
-            }
 
-            @Override
-            public void onLoadFinished(Loader<List<EventModel>> loader, List<EventModel> data) {
-                if (data == null) {
-                    Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
-                } else {
-                    adapter.clear();
-                    adapter.addAll(data);
-                }
-                refresh.setRefreshing(false);
-                eventitems.size();
-            }
+        mCompositeDisposable = new CompositeDisposable();
+        mCompositeDisposable.add( eventsApi.getData()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(this::addall));
 
-            @Override
-            public void onLoaderReset(Loader<List<EventModel>> loader) {
-
-            }
-        }).forceLoad();
-
+//        getLoaderManager().initLoader(LOADER_ITEMS, null, new LoaderManager.LoaderCallbacks<List<EventModel>>() {
+//            @Override
+//            public Loader<List<EventModel>> onCreateLoader(int id, Bundle args) {
+//               return new AsyncTaskLoader<List<EventModel>>(getContext()) {
+//                   @Override
+//                   public List<EventModel> loadInBackground() {
+//                        try{
+//                           Call<List<EventModel>> modelItems=eventsApi.getData();
+//                            Response<List<EventModel>> execute=modelItems.execute();
+//                            List<EventModel> body=execute.body();
+//                            return body;
+//                        }
+//                        catch (Exception e){
+//                            e.printStackTrace();
+//                            return null;
+//                        }
+//                   }
+//               };
+//            }
+//
+//            @Override
+//            public void onLoadFinished(Loader<List<EventModel>> loader, List<EventModel> data) {
+//                if (data == null) {
+//                    Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    adapter.clear();
+//                    adapter.addAll(data);
+//                }
+//                refresh.setRefreshing(false);
+//                eventitems.size();
+//            }
+//
+//            @Override
+//            public void onLoaderReset(Loader<List<EventModel>> loader) {
+//
+//            }
+//        }).forceLoad();
+        refresh.setRefreshing(false);
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -159,50 +185,88 @@ public class SportEventsListFragment extends Fragment {
             addItem(eventModel);
         }
     }
-
+    public void addall(List<EventModel> list){
+        adapter.clear();
+        adapter.addAll(list);
+    }
+    Subscription subscription;
     private void addItem(final EventModel eventModel) {
 
-        getLoaderManager().restartLoader(LOADER_ADD, null, new LoaderManager.LoaderCallbacks<AddResult>() {
-            @Override
-            public Loader<AddResult> onCreateLoader(int id, Bundle args) {
-                return new AsyncTaskLoader<AddResult>(getContext()) {
-                    @Override
-                    public AddResult loadInBackground() {
-                        try{
-                            status= eventsApi.add(eventModel.getId(),
+        mCompositeDisposable = new CompositeDisposable();
+     eventsApi.add(eventModel.getId(),
                                     eventModel.getEventype(),
-                                 /*   eventModel.getMetro(),*/
                                     eventModel.getPeoplesize(),
                                     eventModel.getEventDescription(),
                                     eventModel.getAdress(),
                                     eventModel.getVkid(),
                                     eventModel.getFirstlastname(),
                                     eventModel.getPhonenumber(),
+                                    eventModel.getDatetime(),
                                     eventModel.getLatitude(),
-                                    eventModel.getLongitude()).execute().body();
-                            return status;
-                        }
-                        catch (Exception e){
-                            e.printStackTrace();
-                            return null;
-                        }
-                    }
-                };
-            }
+                                    eventModel.getLongitude())
+             .observeOn(AndroidSchedulers.mainThread())
+             .subscribeOn(Schedulers.io())
+             .subscribe(new Observer<AddResult>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
-            @Override
-            public void onLoadFinished(Loader<AddResult> loader, AddResult data) {
-                loadItems();
+                    }
+                    @Override
+                    public void onNext(AddResult value) {
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                    }
+                    @Override
+                    public void onComplete() {
+                        loadItems();
                 adapter.notifyDataSetChanged();
                 Toast toast = Toast.makeText(getContext(), "Event Add", Toast.LENGTH_LONG);
                 toast.show();
+                    }
+                });
 
-            }
-
-            @Override
-            public void onLoaderReset(Loader<AddResult> loader) {
-
-            }
-        }).forceLoad();
+//        getLoaderManager().restartLoader(LOADER_ADD, null, new LoaderManager.LoaderCallbacks<AddResult>() {
+//            @Override
+//            public Loader<AddResult> onCreateLoader(int id, Bundle args) {
+//                return new AsyncTaskLoader<AddResult>(getContext()) {
+//                    @Override
+//                    public AddResult loadInBackground() {
+//                        try{
+//                            status= eventsApi.add(eventModel.getId(),
+//                                    eventModel.getEventype(),
+//                                    eventModel.getPeoplesize(),
+//                                    eventModel.getEventDescription(),
+//                                    eventModel.getAdress(),
+//                                    eventModel.getVkid(),
+//                                    eventModel.getFirstlastname(),
+//                                    eventModel.getPhonenumber(),
+//                                    eventModel.getDatetime(),
+//                                    eventModel.getLatitude(),
+//                                    eventModel.getLongitude()).execute().body();
+//                            return status;
+//                        }
+//                        catch (Exception e){
+//                            e.printStackTrace();
+//                            return null;
+//                        }
+//                    }
+//                };
+//            }
+//
+//            @Override
+//            public void onLoadFinished(Loader<AddResult> loader, AddResult data) {
+//                loadItems();
+//                adapter.notifyDataSetChanged();
+//                Toast toast = Toast.makeText(getContext(), "Event Add", Toast.LENGTH_LONG);
+//                toast.show();
+//
+//            }
+//
+//            @Override
+//            public void onLoaderReset(Loader<AddResult> loader) {
+//
+//            }
+//        }).forceLoad();
     }
 }

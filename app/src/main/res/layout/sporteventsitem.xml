@@ -58,7 +58,13 @@
                             android:id="@+id/eventMetro"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:gravity="right"/>
+                        <TextView
+                            android:textColor="@color/vk_white"
+                            android:textSize="@dimen/adrssSize"
+                            android:id="@+id/eventDatetime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:gravity="right"/>
 
 

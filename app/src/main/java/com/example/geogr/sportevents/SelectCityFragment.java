@@ -18,7 +18,7 @@ import com.vk.sdk.VKSdk;
 
 public class SelectCityFragment extends android.support.v4.app.Fragment {
    Context context;
-   static int cityindex;
+    static int cityindex;
     public SelectCityFragment(Context context) {
         this.context=context;
     }
@@ -29,7 +29,6 @@ public class SelectCityFragment extends android.support.v4.app.Fragment {
         v.findViewById(R.id.Moscow).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Controller.setBaaseUrl("http://moscow.getsandbox.com/");
                cityindex=0;
                continuework();
             }
@@ -38,7 +37,6 @@ public class SelectCityFragment extends android.support.v4.app.Fragment {
         v.findViewById(R.id.saintPetersburg).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Controller.setBaaseUrl("http://saintp.getsandbox.com/");
                 cityindex=1;
                 continuework();
             }
@@ -47,7 +45,6 @@ public class SelectCityFragment extends android.support.v4.app.Fragment {
         v.findViewById(R.id.otherCity).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Controller.setBaaseUrl("http://other.getsandbox.com/");
                 cityindex=2;
                 continuework();
             }
@@ -55,6 +52,9 @@ public class SelectCityFragment extends android.support.v4.app.Fragment {
 
 
         return v;
+    }
+    public static int getCityindex(){
+        return cityindex;
     }
 
     private void continuework() {

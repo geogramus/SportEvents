@@ -37,26 +37,29 @@ import com.vk.sdk.api.model.VKList;
 
 import java.util.Calendar;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by geogr on 16.11.2017.
  */
 
 public class AddNewEvent extends AppCompatActivity{
     public static final int RC_ADD_ITEM = 55;
-    private String type;
     int PLACE_PICKER_REQUEST = 1;
     private static final double TARGET_LATITUDE = 55.7541679;
     private static final double TARGET_LONGITUDE = 37.62079239;
 
 
-    FloatingActionButton floatingActionButton;
-    Spinner sportType;
-    Spinner metro;
-    Spinner amountOfPeople;
-    TextView description;
-    TextView adress;
-    TextView phoneNumber;
-    Button mapButton;
+    @BindView(R.id.addNewEventButton) FloatingActionButton floatingActionButton;
+    @BindView(R.id.spinnersport) Spinner sportType;
+    @BindView(R.id.spinerAmountOfPeople) Spinner amountOfPeople;
+    @BindView(R.id.eventDescription) TextView description;
+    @BindView(R.id.addneweventAdress) TextView adress;
+    @BindView(R.id.phoneNumber)  TextView phoneNumber;
+    @BindView(R.id.mapButton) Button mapButton;
+    @BindView(R.id.iddate) TextInputEditText date;
+    @BindView(R.id.idtime) TextInputEditText time;
     int id;
     Map map=new Map();
     String uservkid, userfirstlastname;
@@ -65,19 +68,12 @@ public class AddNewEvent extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addnewevent);
 
+        ButterKnife.bind(this);
+
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         id=getIntent().getIntExtra("id",0);
 
-        mapButton=(Button) findViewById(R.id.mapButton);
-        floatingActionButton=(FloatingActionButton) findViewById(R.id.addNewEventButton);
-        sportType=(Spinner) findViewById(R.id.spinnersport);
-        adress=(TextView) findViewById(R.id.addneweventAdress);
-        amountOfPeople=(Spinner) findViewById(R.id.spinerAmountOfPeople);
-        description=(TextView) findViewById(R.id.eventDescription);
-        phoneNumber=(TextView) findViewById(R.id.phoneNumber);
-        final TextInputEditText date=(TextInputEditText) findViewById(R.id.iddate);
-        final TextInputEditText time=(TextInputEditText) findViewById(R.id.idtime);
         final Calendar calendar=Calendar.getInstance();
 
         map.createMapView(getFragmentManager(), R.id.mapView);
@@ -166,10 +162,13 @@ public class AddNewEvent extends AppCompatActivity{
                         map.markerGetPosition().longitude==TARGET_LONGITUDE||
                         uservkid.equals(null)||
                         userfirstlastname.equals(null)||
+                        date.getText().toString().equals("")||
+                        time.getText().toString().equals("")||
                         phoneNumber.getText().equals("")){
                     Toast.makeText(AddNewEvent.this, R.string.errorfieldstoast, Toast.LENGTH_LONG).show();
                 }
                 else{
+                String datetime=date.getText().toString()+" "+time.getText().toString();
                 Intent result=new Intent();
                 result.putExtra("item", new EventModel(id,
                         sportType.getSelectedItem().toString(),
@@ -179,6 +178,7 @@ public class AddNewEvent extends AppCompatActivity{
                         uservkid,
                         userfirstlastname,
                         phoneNumber.getText().toString(),
+                        datetime,
                         map.markerGetPosition().latitude,
                         map.markerGetPosition().longitude)
                         );

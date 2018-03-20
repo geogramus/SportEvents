@@ -12,6 +12,9 @@ import com.example.geogr.sportevents.api.EventModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by geogr on 16.11.2017.
  */
@@ -41,6 +44,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHold
                 holder.eventType.setText(eventModel.getEventype());
                 holder.metro.setText(eventModel.getAdress());
                 holder.numberofpeople.setText("Number of people:"+eventModel.getPeoplesize());
+                holder.datetime.setText(eventModel.getDatetime());
             }
 
     }
@@ -63,17 +67,15 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHold
 
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
-        private final TextView eventType;
-        private final TextView metro;
-        private final TextView numberofpeople;
-        private final View container;
+        @BindView(R.id.eventType) TextView eventType;
+        @BindView(R.id.eventMetro) TextView metro;
+        @BindView(R.id.list_item_number) TextView numberofpeople;
+        @BindView(R.id.eventDatetime) TextView datetime;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
-            eventType= (TextView) itemView.findViewById(R.id.eventType);
-            metro= (TextView) itemView.findViewById(R.id.eventMetro);
-            numberofpeople=(TextView) itemView.findViewById(R.id.list_item_number);
-            container=itemView.findViewById(R.id.itemcontainer);
+            ButterKnife.bind(this, itemView);
+
         }
     }
 }

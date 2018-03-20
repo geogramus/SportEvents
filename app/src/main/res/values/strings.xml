@@ -15,6 +15,8 @@
     <string name="datehint">Date</string>
     <string name="timeHint">Time</string>
     <string name="your_phone_number">Your Phone Number</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
     <integer name="com_vk_sdk_AppId">6260009</integer>
     <string-array name="city">
         <item>Moscow</item>

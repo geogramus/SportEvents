@@ -27,8 +27,7 @@ public class MainActivity extends AppCompatActivity {
             VKScope.GROUPS
 
     };
-    private Button enter;
-    Boolean isResumed;
+
     SharedPreferences prefs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,10 +94,7 @@ public class MainActivity extends AppCompatActivity {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
-//    public void StartSecondActivity(){
-//        Intent intent= new Intent(MainActivity.this, .class);
-//        startActivity(intent);
-//    }
+
     public static class LoginFragment extends android.support.v4.app.Fragment {
         public LoginFragment() {
             super();

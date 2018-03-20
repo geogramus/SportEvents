@@ -16,4 +16,5 @@
     <dimen name="dateSize">10dp</dimen>
     <dimen name="adrssSize">15sp</dimen>
     <dimen name="descriptionpadding">20dp</dimen>
+    <dimen name="plusminustextsize">30sp</dimen>
 </resources>

@@ -23,8 +23,9 @@ import static com.vk.sdk.VKUIHelper.getApplicationContext;
 
 
 public class Map{
-  public Marker marker;
-  public GoogleMap googleMap;
+ private Marker marker;
+  private GoogleMap googleMap;
+    private int zoom=12;
     public void createMapView(FragmentManager fragmentManager, int id){
 
         try {
@@ -44,21 +45,31 @@ public class Map{
             Log.e("mapApp", exception.toString());
         }
     }
+//    int zoom=12;
+//    public void cameraPlus(){
+//        zoom=zoom++;
+//    }
+//    public void cameraMinus(){
+//        zoom=--zoom;
+//        CameraPosition cameraPosition = new CameraPosition.Builder()
+//                .target(new LatLng(lat, lng))
+//                .zoom(zoom)
+//                .build();
+//        CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
+//    }
     public void addMarker(double x, double y){
-        double lat=x;
-        double lng=y;
 
         //устанавливаем позицию и масштаб отображения карты
         CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(new LatLng(lat, lng))
-                .zoom(12)
+                .target(new LatLng(x, y))
+                .zoom(zoom)
                 .build();
         CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
         googleMap.animateCamera(cameraUpdate);
         if(null != googleMap){
             marker = googleMap.addMarker(new MarkerOptions()
                     .draggable(true)
-                    .position(new LatLng(lat, lng))
+                    .position(new LatLng(x, y))
                     .title("Marker")
                     .draggable(false)
             );
@@ -93,6 +104,21 @@ public class Map{
         }
 
     }
+    public void setzoom(int setZoom) {
+
+        if (setZoom == 20) {
+            return;
+        } else {
+
+            CameraPosition cameraPosition = new CameraPosition.Builder()
+                    .target(new LatLng(marker.getPosition().latitude, marker.getPosition().longitude))
+                    .zoom(setZoom)
+                    .build();
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
+            googleMap.animateCamera(cameraUpdate);
+        }
+    }
+
     public LatLng markerGetPosition(){
         return marker.getPosition();
     }
